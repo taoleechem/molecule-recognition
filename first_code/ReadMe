@@ -1,0 +1,13 @@
+Hi:
+
+GCC compiler must add -std==c++11, such as: 
+gcc -std==c++11 file.cpp  
+
+The code includes 5 .cpp files and 1 .h file, as well as a shell script.
+To correctly compile and run this programme, NWchem should be pre-installed in Ubuntu os. And in the shell script "cd /your/file/name/" should be modified to your own filename.
+
+Best Regard!
+
+
+
+4135266532@QQ.COM
