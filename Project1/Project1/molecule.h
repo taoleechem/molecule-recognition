@@ -181,6 +181,18 @@ public:
 		out << "task SCF" << endl;
 		out.close();
 	}
+	friend void ToTinkerFile(Molecule a,Molecule b,string filename,string forceField)
+	{
+		ofstream tofile(filename.c_str(), ios::out);
+		if (!tofile)
+		{
+			cerr << "Error to save to " << filename << endl;
+			exit(1);
+		}
+		tofile << "Hello Tinker!" << endl;
+		tofile.close();
+		cout << "Test to Tinker file" << endl;
+	}
 	//common info of molecule
 	double massOfName(string iname)
 	{
