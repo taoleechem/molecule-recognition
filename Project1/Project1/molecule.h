@@ -388,7 +388,7 @@ public:
 		PerformTrans(point);
 		
 	}
-	void PerformRandomRotAxis(char axis, double precision)
+	void PerformRandomRotAxis(double precision)
 	{
 		const int nums = (int)(360 / precision);
 		clock_t now = clock();
@@ -399,6 +399,14 @@ public:
 		randomRot << 1, 0, 0,
 			0, 1, 0,
 			0, 0, 1;
+		clock_t now2 = clock();
+		std::default_random_engine gene(now2);
+		std::uniform_int_distribution<int> dist(0, 2);
+		char axis = 'x';
+		if (dist(gene) == 1)
+			axis = 'y';
+		else if (dist(gene) == 2)
+			axis = 'z';
 		if (axis == 'x' || axis == 'X')
 			randomRot = EulerRot(x, 0, 0);
 		else if (axis == 'y' || axis == 'Y')
@@ -407,6 +415,14 @@ public:
 			randomRot = EulerRot(0, 0, x);
 		PerformRot(randomRot);
 	}
+	friend void PerformRandomRotAxis2(Molecule a, Molecule b, double precision)
+	{
+		clock_t now = clock();
+		std::default_random_engine generator(now);
+		std::uniform_int_distribution<int> dis(0, 1);
+		dis(generator) == 1 ? (a.PerformRandomRotAxis(precision)) : (b.PerformRandomRotAxis(precision));
+	}
+	
 
 
 };
@@ -465,3 +481,6 @@ public:
 		tofile.close();
 	}
 };
+
+double TinkerEnergy(Molecule a, string forcefield);
+double TinkerEnergy(Molecule a, Molecule b,string forcefield);
